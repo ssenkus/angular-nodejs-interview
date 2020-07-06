@@ -1,33 +1,36 @@
 const express = require('express');
-const app = express();
-const bodyParser = require("body-parser");
-const port = 3080;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const mongoClientWrapper = require('./dataAccess/mongoClientWrapper.js');
 const routes = require('./routes/index.js');
-require('dotenv').config()
+const jobs = require('./jobs/jobs.js');
+require('dotenv').config();
 
-// const users = [];
+const app = express();
+const port = 3080;
 
+app.use(cors());
 app.use(bodyParser.json());
-
-// app.get('/api/users', (req, res) => {
-//     res.json(users);
-// });
-//
-// app.post('/api/user', (req, res) => {
-//     const user = req.body.user;
-//     users.push(user);
-//     res.json("user addedd");
-// });
-
-app.get('/', (req,res) => {
-    res.send('App Works !!!!');
-
-
-});
-
 app.listen(port, () => {
-    console.log(`Server listening on the port::${port}`);
+    mongoClientWrapper.initialize(() => {
 
-    routes.configure(app);
+        routes.configure(app);
+     //   jobs.start();
+    });
 
+    process.on('SIGINT', shutDown);
+    process.on('SIGTERM', shutDown);
 });
+
+function shutDown() {
+    console.log('\nShutting down!');
+
+    jobs.stop(() => {
+
+        mongoClientWrapper.dispose(() => {
+            process.exit(0);
+        });
+
+    });
+
+}
