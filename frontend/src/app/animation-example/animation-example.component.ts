@@ -41,10 +41,31 @@ export class AnimationExampleComponent implements OnInit {
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.add();
-    }, 1000);
+  }
 
+  startAnimation() {
+    this.addElements();
+  }
+
+  addElements() {
+    const adder = setInterval(() => {
+      this.add();
+      if (this.count === 5) {
+        clearInterval(adder);
+        this.removeElements();
+      }
+    }, 500);
+  }
+
+  removeElements() {
+    const remover = setInterval(() => {
+
+      if (this.count > 0) {
+        this.remove();
+      } else {
+        clearInterval(remover);
+      }
+    }, 500);
   }
 
   add() {

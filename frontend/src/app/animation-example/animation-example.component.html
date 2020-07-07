@@ -1,38 +1,35 @@
-<button (click)="add()">add</button>
-<button (click)="remove()">remove</button>
-<button (click)="replace()">replace</button>
-
-<select (change)="changeAnimation($event.target.value)">
-  <option value="fade">fade-in/out</option>
-  <option value="slideFromLeft">slide-in/out from left</option>
-  <option value="slideFromRight">slide-in/out from right</option>
-  <option value="grow">grow-in/shrink-out</option>
-  <option value="bounce">bounce-in/out</option>
-  <option value="swing">swing-in/out</option>
-  <option value="LTR">enter from left, leave to right</option>
-</select>
-
+<button class="btn btn-primary" (click)="changeAnimation('fade')">fade-in/out</button>
+<button class="btn btn-primary" (click)="changeAnimation('slideFromLeft')">slide-in/out from left</button>
+<button class="btn btn-primary" (click)="changeAnimation('slideFromRight')">slide-in/out from right
+</button>
+<button class="btn btn-primary" (click)="changeAnimation('grow')">grow-in/shrink-out</button>
+<button class="btn btn-primary" (click)="changeAnimation('bounce')">bounce-in/out</button>
+<button class="btn btn-primary" (click)="changeAnimation('swing')">swing-in/out</button>
+<button class="btn btn-primary" (click)="changeAnimation('LTR')">enter from left, leave to right</button>
+<button class="btn btn-danger" (click)="startAnimation()">Start!</button>
+<hr>
 <ng-container [ngSwitch]="selectedAnimation">
   <ng-container *ngSwitchCase="'grow'">
-    <div class="list-item" [@growInShrinkOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@growInShrinkOut] *ngFor="let number of numbers">Element {{number}}</button>
   </ng-container>
   <ng-container *ngSwitchCase="'swing'">
-    <div class="list-item" [@swingInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@swingInAndOut] *ngFor="let number of numbers">Element {{number}}</button>
   </ng-container>
   <ng-container *ngSwitchCase="'slideFromLeft'">
-    <div class="list-item" [@enterAndLeaveFromLeft] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@enterAndLeaveFromLeft] *ngFor="let number of numbers">Element {{number}}</button>
   </ng-container>
   <ng-container *ngSwitchCase="'slideFromRight'">
-    <div class="list-item" [@enterAndLeaveFromRight] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@enterAndLeaveFromRight] *ngFor="let number of numbers">Element {{number}}</button>
   </ng-container>
   <ng-container *ngSwitchCase="'fade'">
-    <div class="list-item" [@fadeInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@fadeInAndOut] *ngFor="let number of numbers">Element {{number}}</button>
   </ng-container>
   <ng-container *ngSwitchCase="'bounce'">
-    <div class="list-item" [@bounceInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@bounceInAndOut] *ngFor="let number of numbers">Element {{number}}</button>
   </ng-container>
   <ng-container *ngSwitchCase="'LTR'">
-    <div class="list-item" [@enterFromLeftLeaveToRight] *ngFor="let number of numbers">This is element number: {{number}}</div>
+    <button class="btn btn-success" [@enterFromLeftLeaveToRight] *ngFor="let number of numbers">
+      Element {{number}}</button>
   </ng-container>
 </ng-container>
 
