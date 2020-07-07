@@ -19,16 +19,17 @@ export class CoinTableComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.alarmsService.getAlarms()
-      .subscribe((alarms) => {
-        console.log('ALARMS', alarms);
-        this.alarms = alarms;
-      });
+
 
     this.coinDataService.getCoinData()
       .subscribe((coinsData: CoinDataModel[]) => {
         this.coinsData = coinsData;
         console.log('COINS data', coinsData);
+        this.alarmsService.getAlarms()
+          .subscribe((alarms) => {
+            console.log('ALARMS', alarms);
+            this.alarms = alarms;
+          });
       });
   }
 
@@ -36,10 +37,10 @@ export class CoinTableComponent implements OnInit {
     const matches = this.alarms && this.alarms.filter((alarm: AlarmModel) => {
       return alarm.alarmData.coinId === coin.id
     })
-    return matches && matches.length > 0;
+    return !!matches && matches.length > 0;
   }
 
-  toggleAlarm(coin: CoinDataModel): void {
+  setAlarm(coin: CoinDataModel): void {
     console.log('coin', coin);
     const {name, id, quote: {USD: {price}}} = coin;
     this.alarmsService.createAlarm(new AlarmModel({
@@ -50,17 +51,22 @@ export class CoinTableComponent implements OnInit {
     }))
       .subscribe((data) => {
         console.log('CREATE ALARM DATA res', data);
+      }, () => {
+        console.error('error creating alarm!');
       })
   }
 
   deleteAlarm(coin: CoinDataModel) {
     const matches = this.alarms && this.alarms.filter((alarm: AlarmModel) => {
-      return alarm.alarmData.coinId === coin.id
+      return alarm.alarmData.coinId === coin.id;
     })
     console.log('DELETE ALARM', matches);
-    this.alarmsService.deleteAlarm(matches[0]._id).subscribe(() => {
-      console.log('delete???');
-    })
+    this.alarmsService.deleteAlarm(matches[0]._id)
+      .subscribe(() => {
+        console.log('delete???');
+      }, (err) => {
+        console.log('ERR', err);
+      })
   }
 
 }

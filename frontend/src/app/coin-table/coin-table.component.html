@@ -1,29 +1,34 @@
-<table class="table table-striped">
+<table class="table">
   <thead>
   <tr>
-    <th>ID</th>
     <th>Name</th>
     <th>Price (USD)</th>
     <th>Actions</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let coin of coinsData">
-    <td>{{coin.id}}</td>
-    <td>{{coin.name}}</td>
-    <td>{{coin.quote.USD.price}}</td>
-    <td>
-      <button *ngIf="!hasAlarm(coin)"
-              (click)="toggleAlarm(coin)"
-              type="button"
-              class="btn btn-primary">Toggle Alarm
-      </button>
-      <button *ngIf="hasAlarm(coin)"
-              (click)="deleteAlarm(coin)"
-              type="button"
-              class="btn btn-danger">Has Alarm</button>
-
-    </td>
-  </tr>
+  <ng-container *ngFor="let coin of coinsData">
+    <tr>
+      <td>{{coin.name}}</td>
+      <td>{{coin.quote.USD.price}}</td>
+      <td>
+        <button (click)="coin.isExpanded = !coin.isExpanded">
+          <span *ngIf="!hasAlarm(coin)"><mat-icon>add</mat-icon>Add Alarm</span>
+          <span *ngIf="hasAlarm(coin)"><mat-icon>edit</mat-icon>Edit Alarm</span>
+        </button>
+        <button *ngIf="hasAlarm(coin)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete Alarm</span>
+        </button>
+      </td>
+    </tr>
+    <ng-container *ngIf="coin.isExpanded">
+      <tr>
+        <td colspan="3">
+          <app-coin-table-row-alarm-form [coin]="coin"></app-coin-table-row-alarm-form>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-container>
   </tbody>
 </table>

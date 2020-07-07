@@ -10,11 +10,11 @@ class Alarm {
         let isAlarmTriggered = false;
         switch (this.thresholdDirection) {
             case 'under':
-                isAlarmTriggered = latestCoinData.price_usd < this.priceUsdThreshold;
+                isAlarmTriggered = latestCoinData.quote.USD.price < this.thresholdPriceUsd;
                 break;
             case 'over':
             default:
-                isAlarmTriggered = latestCoinData.price_usd > this.priceUsdThreshold;
+                isAlarmTriggered = latestCoinData.quote.USD.price > this.thresholdPriceUsd;
                 break;
         }
         return isAlarmTriggered;

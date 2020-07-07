@@ -15,11 +15,13 @@ exports.register = (agenda) => {
 
         coinDataRepo.getCoinData((err, coinsData) => {
             alarmRepo.getAlarms((err, alarms) => {
+                console.log('ALARMS', alarms, coinsData);
                 alarms.forEach((alarm) => {
-                    let latestCoinData = _.find(coinsData, {id: alarm.coinId});
 
+                    let latestCoinData = _.find(coinsData, {id: alarm.alarmData.coinId});
+                    // console.log('latestCoinData', latestCoinData);
                     if (latestCoinData && alarm.isTriggered(latestCoinData)) {
-                        let message = `* ALARM * ${alarm.coinId}: $${latestCoinData.price_usd} is ${ alarm.thresholdDirection} threshold $${alarm.priceUsdThreshold}`;
+                        let message = `* ALARM * ${alarm.alarmData.name}: $${latestCoinData.quote.USD.price} is ${ alarm.alarmData.thresholdDirection} threshold $${alarm.alarmData.thresholdPriceUsd}`;
 
                         smsService.sendSms(message, () => {
                             console.log(message);
