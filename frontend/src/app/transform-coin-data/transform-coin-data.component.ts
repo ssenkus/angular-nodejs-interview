@@ -96,6 +96,7 @@ export class TransformCoinDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.output = this.coinData;
   }
 
   simplify() {
