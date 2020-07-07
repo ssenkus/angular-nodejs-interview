@@ -16,7 +16,7 @@ exports.register = (agenda) => {
         coinDataRepo.getCoinData((err, coinsData) => {
             alarmRepo.getAlarms((err, alarms) => {
                 alarms.forEach((alarm) => {
-                    let latestCoinData = _.findWhere(coinsData, {id: alarm.coinId});
+                    let latestCoinData = _.find(coinsData, {id: alarm.coinId});
 
                     if (latestCoinData && alarm.isTriggered(latestCoinData)) {
                         let message = `* ALARM * ${alarm.coinId}: $${latestCoinData.price_usd} is ${ alarm.thresholdDirection} threshold $${alarm.priceUsdThreshold}`;

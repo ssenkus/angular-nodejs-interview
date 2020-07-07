@@ -13,7 +13,7 @@ export class CoinDataService {
     GET_COIN_DATA: '/api/coins/'
   };
 
-  _coinsData: CoinDataModel[];
+  _coinsData: CoinDataModel[]
   // issueListUpdated = new Subject<IssueMonitorItemModel[]>();
   // customDataRangeParams: IssueMonitorRequest = null
 

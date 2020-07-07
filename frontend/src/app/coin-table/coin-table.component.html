@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price (USD)</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let coin of coinsData">
+    <td>{{coin.id}}</td>
+    <td>{{coin.name}}</td>
+    <td>{{coin.quote.USD.price}}</td>
+    <td>
+      <button *ngIf="!hasAlarm(coin)"
+              (click)="toggleAlarm(coin)"
+              type="button"
+              class="btn btn-primary">Toggle Alarm
+      </button>
+      <button *ngIf="hasAlarm(coin)"
+              (click)="deleteAlarm(coin)"
+              type="button"
+              class="btn btn-danger">Has Alarm</button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>

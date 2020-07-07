@@ -1,22 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HttpClientModule} from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { CoinDataService} from "./services/coinData.service";
+import {AppComponent} from './app.component';
+import {CoinDataService} from "./services/coinData.service";
+import {CoinTableComponent} from './coin-table/coin-table.component';
+import {AlarmsService} from "./services/alarms.service";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoinTableComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
-    CoinDataService
+    CoinDataService,
+    AlarmsService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

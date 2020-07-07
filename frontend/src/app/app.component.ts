@@ -15,9 +15,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.coinDataService.getCoinData()
-      .subscribe((coinsData: CoinDataModel[]) => {
-        console.log('COINS data', coinsData);
-      });
+
   }
 }
