@@ -14,7 +14,7 @@ exports.sendSms = (bodyMessage, done) => {
         body: bodyMessage
     });
 
-    client.messages.create(smsMessage, (err, message) => {
+    return client.messages.create(smsMessage, (err, message) => {
         if (err) return done(err);
 
         return done(null, message);

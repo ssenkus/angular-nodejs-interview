@@ -9,14 +9,16 @@ import {CoinTableComponent} from './coin-table/coin-table.component';
 import {AlarmsService} from "./services/alarms.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
-import { CoinTableRowAlarmFormComponent } from './coin-table-row-alarm-form/coin-table-row-alarm-form.component';
+import {CoinTableRowAlarmFormComponent} from './coin-table-row-alarm-form/coin-table-row-alarm-form.component';
+import { TransformCoinDataComponent } from './transform-coin-data/transform-coin-data.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CoinTableComponent,
-    CoinTableRowAlarmFormComponent
+    CoinTableRowAlarmFormComponent,
+    TransformCoinDataComponent
   ],
   imports: [
     BrowserModule,

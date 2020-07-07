@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CoinDataService} from "./services/coinData.service";
-import {CoinDataModel} from "./models/coinData.model";
 
 
 @Component({
@@ -9,9 +7,10 @@ import {CoinDataModel} from "./models/coinData.model";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
+  title = 'Web App';
+  selected: string = '';
 
-  constructor(private coinDataService: CoinDataService) {
+  constructor() {
   }
 
   ngOnInit(): void {
