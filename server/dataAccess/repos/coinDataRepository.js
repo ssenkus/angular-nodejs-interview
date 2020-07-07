@@ -2,13 +2,6 @@ const rp = require('request-promise');
 
 exports.getCoinData = (done) => {
 
-    // request.get('https://sandbox.coinmarketcap.com/migrate/', (err, response, body) => {
-    //
-    //     let coinsData = JSON.parse(body);
-    //
-    //     done(err, coinsData);
-    // });
-
     const requestOptions = {
         method: 'GET',
         uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',

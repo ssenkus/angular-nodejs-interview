@@ -4,8 +4,7 @@
     <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="{{ coin.quote.USD.price}}">
   </div>
   <div class="form-group mx-sm-3 mb-2">
-    <label for="inputPassword2" class="sr-only">Password</label>
-    <input type="number" class="form-control" id="inputPassword2" value="{{ coin.quote.USD.price}}">
+    <input type="text" class="form-control" id="thresholdPriceUsd" value="{{ coin.quote.USD.price}}">
   </div>
-  <button type="submit" class="btn btn-success mb-2">Create/Update Alarm</button>
+  <button type="button" class="btn btn-success mb-2" (click)="setAlarm(coin)">Create/Update Alarm</button>
 </form>

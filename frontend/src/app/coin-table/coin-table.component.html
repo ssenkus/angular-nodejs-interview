@@ -16,7 +16,7 @@
           <span *ngIf="!hasAlarm(coin)"><mat-icon>add</mat-icon>Add Alarm</span>
           <span *ngIf="hasAlarm(coin)"><mat-icon>edit</mat-icon>Edit Alarm</span>
         </button>
-        <button *ngIf="hasAlarm(coin)">
+        <button *ngIf="hasAlarm(coin)" (click)="deleteAlarm(coin)">
           <mat-icon>delete</mat-icon>
           <span>Delete Alarm</span>
         </button>

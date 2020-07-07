@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AlarmModel } from '../models/alarm.model'
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {AlarmModel} from '../models/alarm.model'
 
 
 @Injectable()
@@ -26,9 +26,11 @@ export class AlarmsService {
   }
 
   public createAlarm(alarmData): Observable<any> {
-    return this.http.post(`${'http://localhost:3080'}${this.URLS.ALARMS_REST_ENDPOINT}`, { alarmData})
-      .pipe(map((data) => {
-        console.log('CREATE ALARM DATA', data);
+    return this.http.post(`${'http://localhost:3080'}${this.URLS.ALARMS_REST_ENDPOINT}`, {alarmData})
+      .pipe(map((alarm: AlarmModel) => {
+        console.log('CREATE ALARM DATA', alarm);
+        this._alarms.push(alarm);
+        return alarm;
       }));
   }
 

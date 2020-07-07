@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {CoinTableRowAlarmFormComponent} from './coin-table-row-alarm-form/coin-table-row-alarm-form.component';
 import { TransformCoinDataComponent } from './transform-coin-data/transform-coin-data.component';
+import { AnimationExampleComponent } from './animation-example/animation-example.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TransformCoinDataComponent } from './transform-coin-data/transform-coin
     AppComponent,
     CoinTableComponent,
     CoinTableRowAlarmFormComponent,
-    TransformCoinDataComponent
+    TransformCoinDataComponent,
+    AnimationExampleComponent
   ],
   imports: [
     BrowserModule,

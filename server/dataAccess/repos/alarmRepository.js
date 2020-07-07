@@ -8,7 +8,8 @@ exports.createAlarm = (alarmData, done) => {
     const collection = db.alarms();
 
     collection.insertOne(alarmData, (err, result) => {
-        done(err, alarmData);
+        console.log('create alarm result', result.ops[0]);
+        done(err, result.ops[0]);
     });
 };
 

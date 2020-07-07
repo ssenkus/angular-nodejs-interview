@@ -13,6 +13,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="selected = 'transform-coin-data'">Transform Coin Data</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="selected = 'animation-example'">Animation Example</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -24,4 +27,5 @@
   </div>
   <app-coin-table *ngIf="selected === 'coin-table'"></app-coin-table>
   <app-transform-coin-data *ngIf="selected === 'transform-coin-data'"></app-transform-coin-data>
+  <app-animation-example *ngIf="selected === 'animation-example'"></app-animation-example>
 </div>
