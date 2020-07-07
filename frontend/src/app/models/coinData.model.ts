@@ -6,6 +6,7 @@ export class CoinDataModel implements ICoinDataModel {
       price: number
     }
   }
+  isExpanded: boolean = false;
 
   constructor(obj: any) {
     if (obj) {
@@ -21,5 +22,6 @@ interface ICoinDataModel {
     USD: {
       price: number
     }
-  }
+  };
+  isExpanded: boolean;
 }

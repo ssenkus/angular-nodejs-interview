@@ -19,8 +19,9 @@ export class CoinTableRowAlarmFormComponent implements OnInit {
   }
 
   setAlarm(coin: CoinDataModel): void {
-    console.log('coin', coin);
     const {name, id, quote: {USD: {price}}} = coin;
+
+    // TODO: check alarms for existence of alarm before creating a new one
     this.alarmsService.createAlarm(new AlarmModel({
       name,
       coinId: id,
@@ -29,6 +30,7 @@ export class CoinTableRowAlarmFormComponent implements OnInit {
     }))
       .subscribe((data) => {
         console.log('CREATE ALARM DATA res', data);
+        coin.isExpanded = false;
       }, () => {
         console.error('error creating alarm!');
       })
